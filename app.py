@@ -29,8 +29,10 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
+    print ("processing request")
+    if req.get("result").get("action") != "cats":
         return {}
+    print ("got cats")
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
