@@ -45,6 +45,7 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
+    print ("make YQL Query")
     result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
@@ -55,6 +56,7 @@ def makeYqlQuery(req):
 
 
 def makeWebhookResult(data):
+    print ("Make Webhook")
     query = data.get('query')
     if query is None:
         return {}
