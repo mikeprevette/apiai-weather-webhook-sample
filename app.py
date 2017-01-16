@@ -18,7 +18,6 @@ def webhook():
 
     print("Request:")
     print(json.dumps(req, indent=4))
-    print("is this fucking working")
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
@@ -29,10 +28,8 @@ def webhook():
 
 
 def processRequest(req):
-    print ("processing request")
     if req.get("result").get("action") != "cats":
         return {}
-    print ("got cats")
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
@@ -56,7 +53,6 @@ def makeYqlQuery(req):
 
 
 def makeWebhookResult(data):
-    print ("Make Webhook")
     query = data.get('query')
     if query is None:
         return {}
@@ -87,10 +83,12 @@ def makeWebhookResult(data):
     print("Response:")
     print(speech)
 
+    date = 'google:{"expect_user_response": false,"is_ssml": true}'
+
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
+        "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
@@ -101,4 +99,4 @@ if __name__ == '__main__':
 
     print "Starting app on port %d" % port
 
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(debug=False, port=port, host='0.0.0.0')
