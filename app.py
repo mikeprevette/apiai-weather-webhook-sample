@@ -83,12 +83,12 @@ def makeWebhookResult(data):
     print("Response:")
     print(speech)
 
-    date = 'google:{"expect_user_response": false,"is_ssml": true}'
+    googleSpecs = 'google:{"expect_user_response": false,"is_ssml": true}'
 
     return {
         "speech": speech,
         "displayText": speech,
-        "data": data,
+        "data": googleSpecs,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
